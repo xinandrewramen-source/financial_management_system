@@ -9,12 +9,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Setup PHP 8.3
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.3'
-          extensions: pgsql, pdo_pgsql
-
       - name: Deploy to VPS
         uses: appleboy/ssh-action@v1.2.5
         with:
