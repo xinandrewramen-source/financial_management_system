@@ -13,7 +13,7 @@
         <!-- Header & Navigation Bar -->
         <div class="bg-indigo-900 text-white p-6 rounded-2xl shadow-xl flex flex-col md:flex-row justify-between items-center gap-4">
             <div>
-                <h1 class="text-2xl font-black">🚕 TNVS Finance System</h1>
+                <h1 class="text-2xl font-black"></h1>
                 <p class="text-indigo-200 text-sm">Accounts Receivable, Collections, and AP</p>
             </div>
             
