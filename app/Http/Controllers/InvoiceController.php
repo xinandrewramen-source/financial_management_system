@@ -34,7 +34,7 @@ class InvoiceController extends Controller
         $request->validate([
             'payer_id' => 'required|exists:payers,id',
             'ar_category' => 'required|string',
-            'total_amount' => 'required|numeric|min:1',
+            'total_amount' => 'required|numeric|min:1|max:999999999999.99',
             'due_date' => 'required|date',
         ]);
 

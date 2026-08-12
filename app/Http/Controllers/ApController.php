@@ -39,7 +39,7 @@ class ApController extends Controller
     {
         $request->validate([
             'supplier_id' => 'required|exists:suppliers,id',
-            'total_amount' => 'required|numeric|min:1',
+            'total_amount' => 'required|numeric|min:1|max:999999999999.99',
             'issue_date' => 'required|date',
             'due_date' => 'required|date|after_or_equal:issue_date',
             'description' => 'nullable|string',
@@ -66,7 +66,7 @@ class ApController extends Controller
     {
         $request->validate([
             'ap_invoice_id' => 'required|exists:ap_invoices,id',
-            'amount_paid' => 'required|numeric|min:0.01',
+            'amount_paid' => 'required|numeric|min:0.01|max:999999999999.99',
             'payment_method' => 'required|string',
             'reference_number' => 'nullable|string',
             'payment_date' => 'required|date',

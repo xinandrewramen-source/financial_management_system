@@ -21,7 +21,7 @@ class CollectionController extends Controller
     {
         $request->validate([
             'invoice_id' => 'required|exists:invoices,id',
-            'amount_collected' => 'required|numeric|min:1',
+            'amount_collected' => 'required|numeric|min:1|max:999999999999.99',
             'payment_method' => 'required|string',
         ]);
 
