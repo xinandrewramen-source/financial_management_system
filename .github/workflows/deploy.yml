@@ -20,6 +20,10 @@ jobs:
             mkdir -p /var/www/financial_management
             cd /var/www/financial_management
             git config --global --add safe.directory /var/www/financial_management
+            if [ ! -d ".git" ]; then
+              git init
+              git remote add origin https://github.com/xinandrewramen-source/financial_management_system.git
+            fi
             git fetch origin main
             git reset --hard origin/main
             composer install --no-dev --optimize-autoloader
