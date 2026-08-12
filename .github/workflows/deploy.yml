@@ -27,7 +27,7 @@ jobs:
             fi
             git fetch origin main
             git reset --hard origin/main
-            if [ ! -f ".env" ]; then
+            if [ ! -f ".env" ] || ! grep -q "DB_USERNAME=postgres" .env; then
               cp .env.example .env
               php artisan key:generate
             fi
