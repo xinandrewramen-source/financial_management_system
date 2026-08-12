@@ -1,0 +1,32 @@
+name: Auto Deploy Financial Management App
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1.2.5
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            set -e
+            mkdir -p /var/www/financial_management
+            cd /var/www/financial_management
+            git config --global --add safe.directory /var/www/financial_management
+            git fetch origin main
+            git reset --hard origin/main
+            composer install --no-dev --optimize-autoloader
+            php artisan migrate --force
+            php artisan config:clear
+            php artisan route:clear
+            php artisan cache:clear
+            php artisan view:clear
+            chown -R www-data:www-data /var/www/financial_management
+            systemctl reload nginx

@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\ApController;
-use App\Http\Controllers\BudgetController;
 
 Route::get('/', [InvoiceController::class, 'index']);
 Route::get('/ar', [InvoiceController::class, 'index']);
@@ -22,4 +21,3 @@ Route::put('/ap/suppliers/{supplier}', [ApController::class, 'update']);
 Route::delete('/ap/suppliers/{supplier}', [ApController::class, 'destroy']);
 Route::post('/ap/invoices', [ApController::class, 'storeInvoice']);
 Route::post('/ap/payments', [ApController::class, 'storePayment']);
-
