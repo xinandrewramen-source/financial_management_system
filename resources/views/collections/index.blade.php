@@ -3,7 +3,7 @@
 @section('content')
     <!-- Summary Card -->
     <div class="bg-white p-6 rounded-xl shadow border-l-4 border-emerald-500">
-        <span class="text-sm text-slate-500 font-bold uppercase">Total Collected Amount (Na-kolekta)</span>
+        <span class="text-sm text-slate-500 font-bold uppercase">Total Collect Amount (Na-kolekta)</span>
         <p class="text-3xl font-black text-emerald-600 mt-1">₱{{ number_format($totalCollected, 2) }}</p>
     </div>
 
