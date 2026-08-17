@@ -15,7 +15,7 @@
             <p class="text-sm text-slate-500">Track expenses, import data, and view real-time category analytics</p>
         </div>
         <div class="flex gap-2">
-            <a href="/budget/export" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-sm font-semibold shadow transition flex items-center gap-2">
+            <a href="/budget/export" class="px-4 py-2 text-white rounded-xl text-sm font-semibold shadow transition flex items-center gap-2" style="background-color:#F44336;" onmouseover="this.style.backgroundColor='#D32F2F'" onmouseout="this.style.backgroundColor='#F44336'">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                 Export CSV / Excel
             </a>
@@ -61,7 +61,7 @@
                         <input type="text" name="description" placeholder="e.g. Coffee and snacks, Fuel, Maintenance" class="w-full border border-slate-300 rounded-xl p-2.5 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
                     </div>
 
-                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl shadow-md transition duration-150">
+                    <button type="submit" class="w-full text-white font-bold py-3 px-4 rounded-xl shadow-md transition duration-150" style="background-color:#F44336;" onmouseover="this.style.backgroundColor='#D32F2F'" onmouseout="this.style.backgroundColor='#F44336'">
                         Add Expense
                     </button>
                 </form>
@@ -81,13 +81,13 @@
                         <input type="file" name="csv_file" accept=".csv" required class="w-full border border-slate-300 rounded-xl p-2 text-sm text-slate-600 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
                     </div>
 
-                    <button type="submit" class="w-full bg-slate-800 hover:bg-slate-900 text-white font-semibold py-2.5 px-4 rounded-xl shadow transition text-sm">
+                    <button type="submit" class="w-full text-white font-semibold py-2.5 px-4 rounded-xl shadow transition text-sm" style="background-color:#1c1c1e;" onmouseover="this.style.backgroundColor='#111112'" onmouseout="this.style.backgroundColor='#1c1c1e'">
                         Upload expenses.csv
                     </button>
                 </form>
 
                 <div class="pt-2 border-t border-slate-100 flex gap-2">
-                    <a href="/budget/export" class="w-full text-center border border-blue-600 text-blue-600 hover:bg-blue-50 font-semibold py-2 px-3 rounded-xl transition text-xs">
+                    <a href="/budget/export" class="w-full text-center font-semibold py-2 px-3 rounded-xl transition text-xs" style="border:1.5px solid #F44336; color:#F44336;" onmouseover="this.style.backgroundColor='#fff5f5'" onmouseout="this.style.backgroundColor=''">
                         Download / Export to Excel
                     </a>
                 </div>

@@ -49,7 +49,7 @@
                     <label class="block text-sm font-bold text-slate-700">Payment Terms (days)</label>
                     <input type="number" name="payment_terms_days" class="w-full border p-2 rounded" value="30">
                 </div>
-                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Save Supplier</button>
+                <button type="submit" class="text-white px-4 py-2 rounded font-semibold transition-colors" style="background-color:#F44336;" onmouseover="this.style.backgroundColor='#D32F2F'" onmouseout="this.style.backgroundColor='#F44336'">Save Supplier</button>
             </form>
         </div>
 
@@ -86,7 +86,7 @@
                         <input type="text" name="description" class="w-full border p-2 rounded">
                     </div>
                 </div>
-                <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded">Create Invoice</button>
+                <button type="submit" class="text-white px-4 py-2 rounded font-semibold transition-colors" style="background-color:#F44336;" onmouseover="this.style.backgroundColor='#D32F2F'" onmouseout="this.style.backgroundColor='#F44336'">Create Invoice</button>
             </form>
         </div>
     </div>

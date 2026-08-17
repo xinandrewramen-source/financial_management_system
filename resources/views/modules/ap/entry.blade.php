@@ -13,16 +13,16 @@
             <h1 class="text-xl font-extrabold font-outfit text-gray-900">AP Entry</h1>
             <p class="text-xs text-gray-500 mt-0.5">Register suppliers and create new payable invoices.</p>
         </div>
-        <a href="{{ url('/ap/ledger') }}" class="flex items-center gap-2 text-xs font-semibold text-indigo-600 bg-indigo-50 border border-indigo-200 px-3 py-1.5 rounded-full hover:bg-indigo-100 transition-colors">
+        <a href="{{ url('/ap/ledger') }}" class="flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full transition-colors" style="color:#F44336; background-color:#fff5f5; border:1px solid rgba(244,67,54,0.3);" onmouseover="this.style.backgroundColor='#fee2e2'" onmouseout="this.style.backgroundColor='#fff5f5'">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
             View AP Ledger →
         </a>
     </div>
 
     {{-- Summary Card --}}
-    <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-indigo-500 mb-6">
+    <div class="bg-white p-6 rounded-xl shadow-sm mb-6" style="border-left:4px solid #F44336;">
         <span class="text-sm text-slate-500 font-bold uppercase tracking-wide">Total Outstanding Payables</span>
-        <p class="text-3xl font-black text-indigo-600 mt-1">₱{{ number_format($totalPayables, 2) }}</p>
+        <p class="text-3xl font-black mt-1" style="color:#F44336;">₱{{ number_format($totalPayables, 2) }}</p>
     </div>
 
     @if(session('success'))
@@ -65,7 +65,7 @@
                     <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Payment Terms (days)</label>
                     <input type="number" name="payment_terms_days" class="w-full border border-slate-200 p-2.5 rounded-lg text-sm focus:ring-2 focus:ring-indigo-300 focus:outline-none" value="30">
                 </div>
-                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold py-2.5 rounded-lg transition-colors">
+                <button type="submit" class="w-full text-white text-sm font-bold py-2.5 rounded-lg transition-colors" style="background-color:#F44336;" onmouseover="this.style.backgroundColor='#D32F2F'" onmouseout="this.style.backgroundColor='#F44336'">
                     Save Supplier
                 </button>
             </form>
@@ -106,7 +106,7 @@
                         <input type="text" name="description" class="w-full border border-slate-200 p-2.5 rounded-lg text-sm focus:ring-2 focus:ring-indigo-300 focus:outline-none" placeholder="Invoice note...">
                     </div>
                 </div>
-                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold py-2.5 rounded-lg transition-colors">
+                <button type="submit" class="w-full text-white text-sm font-bold py-2.5 rounded-lg transition-colors" style="background-color:#F44336;" onmouseover="this.style.backgroundColor='#D32F2F'" onmouseout="this.style.backgroundColor='#F44336'">
                     Create Invoice
                 </button>
             </form>

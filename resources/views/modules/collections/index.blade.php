@@ -7,14 +7,14 @@
 
 @section('content')
     <!-- Summary Card -->
-    <div class="bg-white p-6 rounded-xl shadow border-l-4 border-emerald-500">
+    <div class="bg-white p-6 rounded-xl shadow" style="border-left:4px solid #F97316;">
         <span class="text-sm text-slate-500 font-bold uppercase">Total Collected Amount (Na-kolekta)</span>
-        <p class="text-3xl font-black text-emerald-600 mt-1">₱{{ number_format($totalCollected, 2) }}</p>
+        <p class="text-3xl font-black text-gray-900 mt-1">₱{{ number_format($totalCollected, 2) }}</p>
     </div>
 
     <!-- Record Collection Form -->
     <div class="bg-white p-5 rounded-xl shadow border max-w-2xl mx-auto">
-        <h2 class="text-md font-bold mb-3 text-emerald-900">💰 Record Payment Received</h2>
+        <h2 class="text-md font-bold mb-3 text-gray-800">💰 Record Payment Received</h2>
         <form action="/collections" method="POST" class="space-y-3">
             @csrf
             <div>
@@ -48,7 +48,7 @@
                     <input type="text" name="reference_no" placeholder="OR# 123456" class="w-full border p-2 rounded text-sm">
                 </div>
             </div>
-            <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold py-2 rounded">Save Collection</button>
+            <button type="submit" class="w-full text-white text-sm font-bold py-2 rounded transition-colors" style="background-color:#F97316;" onmouseover="this.style.backgroundColor='#EA580C'" onmouseout="this.style.backgroundColor='#F97316'">Save Collection</button>
         </form>
     </div>
 
@@ -73,7 +73,7 @@
                             <td class="p-3 text-slate-500">{{ $col->created_at->format('M d, Y h:i A') }}</td>
                             <td class="p-3 font-semibold">{{ $col->invoice->invoice_number }}</td>
                             <td class="p-3">{{ $col->invoice->payer->name }}</td>
-                            <td class="p-3 text-emerald-600 font-bold">₱{{ number_format($col->amount_collected, 2) }}</td>
+                            <td class="p-3 text-gray-900 font-bold">₱{{ number_format($col->amount_collected, 2) }}</td>
                             <td class="p-3"><span class="bg-slate-100 border text-slate-700 px-2 py-0.5 rounded text-xs font-bold">{{ $col->payment_method }}</span></td>
                             <td class="p-3 text-slate-500 font-mono text-xs">{{ $col->reference_no ?? 'N/A' }}</td>
                         </tr>
