@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@php
+    $pageTitle = 'Collection Management';
+    $currentPage = 'collections';
+@endphp
+
 @section('content')
     <!-- Summary Card -->
     <div class="bg-white p-6 rounded-xl shadow border-l-4 border-emerald-500">

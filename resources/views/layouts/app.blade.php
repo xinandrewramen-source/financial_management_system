@@ -1,59 +1,145 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finance System - Budget & Financial Management</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ ($pageTitle ?? 'Dashboard') }} — TripWise TNVS</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#F44336',
+                            dark: '#D32F2F',
+                            light: '#EF5350',
+                            soft: '#fff5f5',
+                        },
+                        forest: {
+                            DEFAULT: '#1c1c1e',
+                            dark: '#111112',
+                            light: '#2c2c2e',
+                            soft: '#fff5f5',
+                        },
+                        gold: {
+                            DEFAULT: '#F44336',
+                            dark: '#D32F2F',
+                            light: '#EF5350',
+                            soft: '#fff5f5',
+                        },
+                        cream: {
+                            DEFAULT: '#faf9f6',
+                            dark: '#f1efe9',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        outfit: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .font-outfit { font-family: 'Outfit', sans-serif; }
+
+        /* Default desktop layout — headbar and content positioned after sidebar */
+        #navigia-headbar { left: 16rem; transition: left 0.3s ease; }
+        #main-content   { margin-left: 16rem; transition: margin-left 0.3s ease; }
+
+        /* Sidebar collapsed state */
+        body.sidebar-collapsed #navigia-sidebar { width: 4.5rem; }
+        body.sidebar-collapsed #navigia-sidebar .sidebar-text { display: none; }
+        body.sidebar-collapsed #navigia-sidebar .sidebar-group > div { display: none !important; }
+        body.sidebar-collapsed #navigia-headbar { left: 4.5rem; }
+        body.sidebar-collapsed #main-content { margin-left: 4.5rem; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #f1efe9; }
+        ::-webkit-scrollbar-thumb { background: #F44336; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #D32F2F; }
+
+        /* Mobile: sidebar hidden off-screen by default */
+        @media (max-width: 1023px) {
+            #navigia-sidebar { transform: translateX(-100%); }
+            #navigia-sidebar.mobile-open { transform: translateX(0); }
+            #navigia-headbar { left: 0 !important; transition: none; }
+            #main-content { margin-left: 0 !important; transition: none; }
+        }
+    </style>
+
+    @stack('styles')
 </head>
-<body class="bg-slate-50 text-slate-800 p-6 min-h-screen">
+<body class="antialiased text-gray-800">
 
-    <div class="max-w-7xl mx-auto space-y-6">
-        
-        <!-- Header & Navigation Bar -->
-        <div class="bg-indigo-900 text-white p-6 rounded-2xl shadow-xl flex flex-col md:flex-row justify-between items-center gap-4">
-            <div>
-                <h1 class="text-2xl font-black tracking-tight">Finance System</h1>
-                <p class="text-indigo-200 text-sm">Accounts Receivable, Collections, AP & Budget Management</p>
-            </div>
-            
-            <!-- Navigation Links -->
-            <nav class="flex flex-wrap gap-2 text-sm font-semibold">
-                <a href="/ar" class="px-4 py-2 rounded-xl transition {{ request()->is('ar', 'invoices', '/') ? 'bg-white text-indigo-900 shadow-md font-bold' : 'bg-indigo-800/60 text-indigo-100 hover:bg-indigo-800' }}">
-                    Receivables (AR)
-                </a>
-                <a href="/collections" class="px-4 py-2 rounded-xl transition {{ request()->is('collections*') ? 'bg-white text-indigo-900 shadow-md font-bold' : 'bg-indigo-800/60 text-indigo-100 hover:bg-indigo-800' }}">
-                    Collections
-                </a>
-                <a href="/ap" class="px-4 py-2 rounded-xl transition {{ request()->is('ap*') ? 'bg-white text-indigo-900 shadow-md font-bold' : 'bg-indigo-800/60 text-indigo-100 hover:bg-indigo-800' }}">
-                    Payables (AP)
-                </a>
-                <a href="/budget" class="px-4 py-2 rounded-xl transition {{ request()->is('budget*') ? 'bg-white text-indigo-900 shadow-md font-bold' : 'bg-indigo-800/60 text-indigo-100 hover:bg-indigo-800' }}">
-                    📊 Budget Management
-                </a>
-            </nav>
+    {{-- ========= Sidebar Partial ========= --}}
+    @include('partials.sidebar')
+
+    {{-- ========= Headbar Partial ========= --}}
+    @include('partials.headbar')
+
+    {{-- ========= Main Content Area ========= --}}
+    <main id="main-content" class="pt-16 min-h-screen transition-all duration-300 bg-gray-50">
+        <div class="p-4 sm:p-6 lg:p-8">
+            @yield('content')
         </div>
+    </main>
 
-        @if(session('success'))
-            <div class="bg-emerald-500 text-white font-bold p-4 rounded-xl shadow-md flex justify-between items-center">
-                <span>{{ session('success') }}</span>
-                <button onclick="this.parentElement.remove()" class="text-emerald-100 hover:text-white">&times;</button>
-            </div>
-        @endif
+    <!-- Shared JavaScript for sidebar & headbar interactions -->
+    <script>
+        // ---- Sidebar group toggle ----
+        function toggleGroup(groupId) {
+            const content = document.getElementById(groupId);
+            const arrow = document.getElementById(groupId + '-arrow');
+            content.classList.toggle('hidden');
+            if (arrow) arrow.classList.toggle('rotate-180');
+        }
 
-        @if($errors->any())
-            <div class="bg-rose-500 text-white font-bold p-4 rounded-xl shadow-md space-y-1">
-                @foreach($errors->all() as $error)
-                    <div>• {{ $error }}</div>
-                @endforeach
-            </div>
-        @endif
+        // ---- Mobile Sidebar ----
+        function openMobileSidebar() {
+            document.getElementById('navigia-sidebar').classList.add('mobile-open');
+            document.getElementById('sidebar-overlay').classList.remove('hidden');
+        }
+        function closeMobileSidebar() {
+            document.getElementById('navigia-sidebar').classList.remove('mobile-open');
+            document.getElementById('sidebar-overlay').classList.add('hidden');
+        }
 
-        <!-- Dynamic Content Here -->
-        @yield('content')
+        // ---- Desktop sidebar collapse ----
+        const desktopCollapseBtn = document.getElementById('desktop-collapse-btn');
+        if (desktopCollapseBtn) {
+            desktopCollapseBtn.addEventListener('click', () => {
+                document.body.classList.toggle('sidebar-collapsed');
+            });
+        }
 
-    </div>
+        // ---- User menu dropdown ----
+        function toggleUserMenu() {
+            document.getElementById('user-menu').classList.toggle('hidden');
+        }
+        document.addEventListener('click', (e) => {
+            const userMenu = document.getElementById('user-menu');
+            const userBtn = document.getElementById('user-menu-btn');
+            if (userMenu && userBtn && !userMenu.contains(e.target) && !userBtn.contains(e.target)) {
+                userMenu.classList.add('hidden');
+            }
+        });
+    </script>
 
+    @stack('scripts')
 </body>
 </html>

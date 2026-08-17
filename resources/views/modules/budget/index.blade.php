@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@php
+    $pageTitle = 'Budget Management';
+    $currentPage = 'budget';
+@endphp
+
 @section('content')
 <div class="space-y-6">
 

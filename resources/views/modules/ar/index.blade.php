@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@php
+    $pageTitle = 'Accounts Receivable';
+    $currentPage = 'ar';
+@endphp
+
 @section('content')
     <!-- Summary Card -->
     <div class="bg-white p-6 rounded-xl shadow border-l-4 border-rose-500">

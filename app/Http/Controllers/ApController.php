@@ -19,6 +19,23 @@ class ApController extends Controller
         return view('modules.ap.index', compact('suppliers', 'apInvoices', 'totalPayables'));
     }
 
+    public function entry(Request $request)
+    {
+        $suppliers = Supplier::orderBy('name')->get();
+        $totalPayables = ApInvoice::sum('balance');
+
+        return view('modules.ap.entry', compact('suppliers', 'totalPayables'));
+    }
+
+    public function ledger(Request $request)
+    {
+        $suppliers = Supplier::orderBy('name')->get();
+        $apInvoices = ApInvoice::with('supplier')->orderBy('created_at', 'desc')->get();
+        $totalPayables = ApInvoice::sum('balance');
+
+        return view('modules.ap.ledger', compact('suppliers', 'apInvoices', 'totalPayables'));
+    }
+
     public function storeSupplier(Request $request)
     {
         $request->validate([
